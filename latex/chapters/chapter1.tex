@@ -1,0 +1,125 @@
+\chapter{Introduction}
+\label{chapter:introduction}
+
+\begin{introduction}
+
+This chapter introduces the growing relevance of Artificial Intelligence and Federated Learning, highlighting the core challenges addressed in this research, specifically concerning resilience and modularity in dynamic, distributed environments.
+
+\end{introduction}
+
+
+\section{Context}
+
+\ac{ai} is becoming increasingly used in our daily lives, revolutionizing industries ranging from healthcare and finance to transportation and education \cite{rashid2024ai}. This widespread adoption highlights \ac{ai}'s potential to address complex problems, automate processes, and drive innovation. Yet, training \ac{ml} models has significant challenges, especially when dealing with sensitive or distributed data \cite{xu2021privacy}.
+
+\ac{fl} offers a promising approach to resolving these challenges by leveraging the power of distributed systems while promoting collaboration, where entities do not share their data. This paradigm addresses data security and regulatory compliance concerns, such as the \ac{gdpr} and AI Act \cite{durovic2024privacy}, which is increasingly crucial in the era of big data and \ac{ai}.
+
+However, the journey towards leveraging \ac{fl} benefits has technical challenges that involve ensuring the system's robustness and resilience in real-world scenarios. The concept of resilience in \ac{fl} for this work refers to the ability of the system to maintain its training and performance, even in the presence of node failures, delays, and other adversities.
+
+The following sections delve into the motivation for this research, the objectives it aims to achieve, contributions, and the overall structure of this dissertation.
+
+
+
+\section{Motivation}
+\label{sec:motivation}
+
+Despite its significant potential, the success of \ac{fl} depends heavily on its ability to operate efficiently within dynamic and heterogeneous network environments, where devices may have connectivity issues and can join or leave the network at any time. This relies on the robustness and resilience of the system that is given by the underlying communication infrastructure, such as 5G and 6G, where \ac{fl} is a strong candidate for distributed learning in edge computing environments \cite{luo2023optimization}. 
+
+However, other technical challenges must be addressed, such as \ac{non-iid} data distribution \cite{zhao2018federated}, communication overhead, and achieving a reliable model aggregation \cite{guendouzi2023systematic}. This volatility can significantly impact the performance of the \ac{fl} system, degrading the quality of the models, so it is crucial to address these challenges to make \ac{fl} a practical solution for real-world applications.
+
+While a substantial body of research explores the comparative performance, privacy benefits, and fundamental differences between \ac{fl} and traditional centralized \ac{ml} approaches \cite{teixeira2025efficient}, this dissertation explicitly addresses the technical challenges inherent within the \ac{fl} training paradigm itself.
+
+Existing \ac{fl} frameworks mentioned in Chapter~\ref{chap:background}, while innovative, may address some of these challenges, but they often lack the flexibility to adapt to the dynamic nature of the network, and they lack modularity. This modularity is important to allow the integration of different components, such as communication protocols, model aggregation strategies, and optimization algorithms, to create a system that follows different requirements and constraints, but also to allow the integration of existing systems in real-world applications.
+
+To this end, there is a compelling need for a resilient and modular \ac{fl} framework designed to adapt dynamically to changing network conditions and to seamlessly handle the addition and removal of participating devices, ensuring uninterrupted training processes and improving the robustness and scalability of \ac{fl} systems \cite{chen2023dynamicfl}. Furthermore, this framework would significantly expand the applicability of \ac{fl}, making it suitable for diverse real-world environments ranging from stable enterprise networks to challenging edge computing contexts.
+
+
+\section{Objectives}
+\label{sec:objectives}
+
+The primary objective of this research is to design, implement, and evaluate a Resilient Federated Learning Framework with a focus on modularity. This framework aims to address key technical and practical challenges inherent in deploying \ac{fl} in dynamic and unpredictable environments, particularly ensuring stable and uninterrupted operation in the face of node failures and delays. 
+
+Driven by the potential for such resilience to enable the reliable deployment of \ac{fl} in real-world applications, this research is motivated by its potential contributions to environmental sustainability, by preventing wasted computational and communication energy associated with training disruptions and failures, and by allowing the use of existing devices in edge computing environments, which can reduce the need for additional infrastructure. Furthermore, it aims to contribute to the broader societal good by enabling reliable, privacy-preserving solutions in critical sectors.
+
+The expected outcomes of this research are:
+
+\begin{itemize}
+    \item \textbf{Open Source Framework:} Develop a modular, resilient, and open-source \ac{fl} framework with a \ac{mit} licence, that can be easily extended and integrated with existing systems.
+    \item \textbf{Scientific Publication:} Write and publish a research paper in a conference or journal, presenting the framework and its evaluation, to contribute to the research community with valuable insights and knowledge about \ac{fl}.
+    \item \textbf{Dissertation Document:} This publicly available document will provide a comprehensive overview of the research, analyzing the state-of-the-art, stating the design choices, including the architecture and implementation details, and a comprehensive evaluation of the framework, by showcasing its performance in multiple scenarios.
+\end{itemize}
+
+\section{Contributions}
+\label{sec:contributions}
+
+The primary contributions of this dissertation include both the development of a robust framework and the dissemination of new knowledge through academic publications and collaborative projects. This research has led to the design, implementation, and rigorous evaluation of \textit{FlexFL}, a novel open-source framework specifically engineered for resilient \ac{fl}. 
+
+\textit{FlexFL} is distinguished by its highly modular architecture, which allows for flexible integration of various \ac{ml} backends, \ac{fl} algorithms, and communication protocols. It is designed to adapt dynamically to network conditions, effectively handle node failures, and ensure continuous training, thereby addressing critical challenges inherent in real-world \ac{fl} deployments. The framework's codebase is publicly available on GitHub \footnote{\url{https://github.com/leoalmPT/FlexFL}} and its package can be installed via PyPI \footnote{\url{https://pypi.org/project/flexfl/}}.
+
+This dissertation document itself serves as a comprehensive record of the research done, detailing the problem statement, systematically reviewing the state-of-the-art, elaborating on the proposed modular architecture, describing the implementation specifics (including resilience mechanisms and optimizations), and rigorously evaluating the framework's performance and robustness across various experimental scenarios.
+
+Furthermore, my research engagement extends to participation in a significant project funded by a prestigious research grant. Awarded by the University of Aveiro and Instituto de Telecomunicações, this grant is part of the broader Agenda Mobilizadora para a Inovação Empresarial, in collaboration with NEXUS - Pacto de Inovação - Transição Verde e Digital para Transportes, Logística e Mobilidade. This work specifically focuses on the application of Machine Learning in SmartPort environments, particularly at the Port of Sines, encompassing the development of resilient communication layers for \ac{fl}, thereby further contextualizing and extending the practical relevance of the topics explored.
+
+Beyond individual research, a significant contribution involved the guidance and supervision of a student group's final year project. The project's objective was to develop a graphical interface to manage the department's current implementation of \ac{fl}. It provides the means to control the training and visualize its progress. This is directly aligned with this dissertation.
+
+\subsection{Scientific Publications}
+\label{subsec:publications}
+
+Furthermore, the insights and results derived from this research have been disseminated through several academic publications, thereby contributing to the broader scientific community. This includes five published papers, three accepted papers, and one additional papers currently under review as shown in Table~\ref{tab:publications}. 
+
+While not all of these contributions focus exclusively on Federated Learning, they collectively demonstrate a comprehensive engagement with critical challenges and opportunities in \ac{ai} and \ac{ml}, particularly concerning distributed systems and resource-constrained environments, directly contributing to the comprehensive understanding and innovative design underpinning this dissertation.
+
+\begin{table}[!htb]
+    \centering
+    \caption[Overview of Research Publications]{Overview of 9 scientific publications, categorized by their status: 5 published, 3 accepted, and 1 currently under review}
+    \label{tab:publications}
+    \begin{tabular}{Sc | p{11cm}}
+        \toprule
+        \textbf{Status} &
+        \textbf{Title} \\
+        \midrule
+        \multirow{10.5}{*}{Published}
+        & \textbf{1 -} Privacy-Preserving Defense: Intrusion Detection in IoT using Federated Learning \cite{10608461} \\ \addlinespace
+        & \textbf{2 -} Shallow vs. Deep Learning: Prioritizing Efficiency in Next Generation Networks \cite{teixeira2024shallow}  \\ \addlinespace
+        & \textbf{3 -} Efficient training: Federated learning cost analysis \cite{teixeira2025efficient}  \\ \addlinespace
+        & \textbf{4 -} AIDetx: A Compression-Based Method for Identification of Machine-Learning Generated Text \cite{Almeida32025} \\ \addlinespace
+        & \textbf{5 -} Federated Learning for Dynamic Edge: A Modular and Resilient Approach \cite{LeonardoAlmeida2025} \\
+        \midrule
+        \multirow{5}{*}{Accepted}
+        & \textbf{6 -} From Black Box to Transparency: Consistency and Cost within XAI \cite{Corona2024} \\ \addlinespace
+        & \textbf{7 -} Resilient Federated Learning Framework for 6G \cite{fl-icct} \\ \addlinespace
+        & \textbf{8 -} Optimised Task Placement for MLOps \cite{mlops-placement-icct} \\
+        \midrule
+        \multirow{2}{*}{Under Review}
+        & \textbf{9 -} Understanding What Federated Learning Models Learn: A Comparative Study with Traditional Models \cite{Teixeira102025} \\ 
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+In \cite{10608461} we address the critical challenge of securing \ac{iot} networks, particularly concerning data privacy for \ac{ids}, by exploring the efficacy of \ac{fl} as a privacy-preserving approach for training robust \ac{ids} models. We evaluated the \ac{fl}-based training of Neural Network models, comparing its performance against traditional centralized training methods across various numbers of workers. Our experimental results demonstrate that \ac{fl}-trained \ac{ids} models achieve comparable detection performance to their centrally trained counterparts while exhibiting significantly faster convergence times. 
+
+\cite{teixeira2024shallow} presents the computational challenges of deploying \ac{ml} models in Next Generation Networks (5G/B5G), particularly for real-time applications such as network slicing attribution and \ac{ids}. Our study conducts a comprehensive comparative analysis between shallow \ac{ml} models and state-of-the-art \ac{dl} models across these key tasks. Our experimental results demonstrate that shallow \ac{ml} models achieve comparable performance to their \ac{dl} counterparts while exhibiting significantly faster training and prediction times, often leading to over 90\% acceleration. 
+
+The challenges of deploying \ac{ai} and \ac{ml} models in Next Generation Networks (6G), particularly concerning data privacy and resource constraints are presented in \cite{teixeira2025efficient}. Where we investigate \ac{fl} as a distributed and privacy-preserving solution for training these models. Our work specifically analyzes the performance and costs of various \ac{fl} approaches, including training time, communication overhead, and energy consumption. Through experiments, we demonstrate that \ac{fl} can significantly accelerate the training process and reduce data transfer, but its overall effectiveness is highly dependent on the chosen \ac{fl} paradigm and underlying network conditions, underscoring that \ac{fl} is not a one-size-fits-all solution.
+
+\cite{Almeida32025} introduces AIDetx, a novel compression-based method for the identification of \ac{ml} generated text, aiming to overcome the limitations of traditional deep learning classifiers such as high computational costs and interpretability issues. AIDetx leverages finite-context models (FCMs) to construct distinct compression models for human-written and AI-generated content. New text inputs are then classified based on which model yields a higher compression ratio, indicating a better statistical fit. This approach offers a highly interpretable and computationally efficient solution, significantly reducing training time and hardware requirements (e.g., eliminating the need for GPUs). 
+
+We propose a recent version of the FlexFL framework in \cite{LeonardoAlmeida2025}, designed to address significant challenges, such as fault tolerance, elasticity, and communication efficiency, in dynamic, resource-constrained edge environments, including 5G/6G networks and \ac{iot} deployments. Our framework's architecture is built on decoupled modules that handle core \ac{fl} functionalities, offering flexibility in integrating various algorithms, communication protocols, and resilience strategies. Through experimental evaluations, we demonstrate the framework's ability to seamlessly integrate three different communication protocols and three \ac{fl} paradigms and show that protocol choice significantly impacts performance, with Zenoh emerging as the most efficient option due to its lower overhead compared to Kafka and \ac{mqtt} in high-volume communication scenarios. Furthermore, the framework successfully maintains model training and achieves convergence even under simulated probabilistic worker failures.
+
+In \cite{Corona2024}, we address the critical need for \ac{xai} in 5G and 6G networks, driven by the increasing reliance on complex \ac{ml} models for network operations and the regulatory demand for transparency. Our study investigates the consistency of feature importance explanations across three state-of-the-art \ac{xai} techniques (SHAP, LIME, and \ac{pi}) when applied to various \ac{ml} models in five distinct 5G network scenarios, while also quantifing the temporal and energy costs associated with employing these \ac{xai} methods. Our findings demonstrate that while \ac{pi} is the most cost-efficient \ac{xai} technique, there can be significant disagreements among \ac{xai} methods regarding feature relevance, even for highly accurate \ac{ml} models.
+
+\cite{fl-icct} proposes an early version of the FlexFL framework designed to overcome key challenges in dynamic and heterogeneous 6G and large-scale \ac{iot} environments. We address the critical limitations of traditional \ac{fl} implementations, including communication costs, node failures, and scalability issues. Our framework leverages Zenoh as a communication protocol to enhance fault tolerance and efficiency. Through simulated experiments on the UNSW-NB15 dataset, we demonstrate that our proposed framework successfully handles simulated node failures, reduces communication overhead compared to \ac{mpi}, and maintains high model accuracy and convergence.
+
+\cite{mlops-placement-icct} presents a novel task placement system designed to optimize the execution of \ac{ml} pipelines in heterogeneous computing environments. Our system employs a two-phase strategy: pipeline scheduling using Shortest Job First and task placement using a heuristic-based method that considers task type, data characteristics, \ac{ml} model type, and node load. This system is integrated with Kubeflow for orchestration and manages the entire \ac{ml} lifecycle from data preprocessing to model evaluation. Through experimental evaluations using various \ac{ml} models and datasets, the proposed system significantly outperforms baseline methods and the Kubernetes default scheduler, achieving substantial reductions in total execution time (up to 68\%) and average waiting time (over 80\%). 
+
+Lastly, in \cite{Teixeira102025}, we investigate the impact of \ac{fl} on the explainability of \ac{ml} models. Addressing the need for model reliability and trust, we leverage \ac{xai} metrics to assess how \ac{fl} affects the underlying patterns learned by \ac{ml} models, by evaluating the correlation between \ac{xai} outputs from models trained using four distinct \ac{fl} approaches and a traditional single-host method. Our analysis spans four publicly available datasets, employing two \ac{xai} metrics and two correlation metrics. The findings reveal a high correlation in \ac{xai} outputs for three of the four \ac{fl} approaches, indicating that \ac{fl} models generally learn similar patterns to their centralized counterparts. However, in some instances, even with comparable performance, \ac{fl} models appear to learn different underlying patterns, underscoring the nuanced relationship between distributed training and model interpretability.
+
+
+\section{Document Outline}
+\label{sec:outline}
+
+This dissertation document is structured as follows: Chapter~\ref{chap:background} delves into the necessary background, covering fundamental concepts such as centralized, distributed and federated learning. Also explores relevant communication protocols and related work by presenting a systematic literature review alongside a comparative analysis of existing frameworks. 
+
+Chapter~\ref{chap:proposed_solution} details the proposed solution by discussing system requirements, presenting the architectural design, and showing a SWOT analysis. Chapter~\ref{chap:implementation} describes the implementation details of the framework, including the software stack, the adaptation of \ac{fl} algorithms for resilience, and additional features. 
+
+Chapter~\ref{chap:evaluation} presents the evaluation methodology and results, outlining the experimental setup, datasets, models, metrics, and the analysis of various scenarios demonstrating the framework's performance and resilience. Finally, Chapter~\ref{chap:conclusion} concludes the dissertation by summarizing the contributions, discussing the limitations of the work, and proposing directions for future research.

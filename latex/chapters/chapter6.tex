@@ -1,0 +1,71 @@
+\chapter{Conclusion}
+\label{chap:conclusion}
+
+\begin{introduction}
+
+This chapter summarizes the key contributions of the Resilient Federated Learning Framework, discusses its limitations, and proposes directions for future research, reinforcing its role in advancing robust and scalable FL deployments.
+
+
+\end{introduction}
+
+\section{Findings and Accomplishments}
+
+The growing prevalence of \ac{ai} applications in dynamic, resource-constrained edge environments, significantly enabled by technologies like 5G/6G and the proliferation of \ac{iot} devices, underscores the critical need for robust and scalable distributed \ac{ml} paradigms such as \ac{fl}.
+
+However, deploying \ac{fl} effectively in these real-world settings presents considerable technical challenges, particularly concerning fault tolerance, elasticity to dynamic participation, and communication efficiency under variable network conditions. This dissertation addressed these key issues by proposing, implementing, and evaluating a novel \ac{fl} framework explicitly designed for resilience and modularity. Guided by the challenges, this research specifically aimed to answer:
+
+\begin{itemize}
+    \item \textbf{RQ1:} How can Federated Learning frameworks be designed to ensure robustness against node failures across dynamic network environments?
+    \item \textbf{RQ2:} What communication layer architectures are most suitable for supporting fault-tolerant and resilient Federated Learning under dynamic network conditions?
+\end{itemize}
+
+The core of our proposed framework is its highly modular architecture, comprising seven decoupled components responsible for distinct aspects of the \ac{fl} process, including communication layer, \ac{fl} algorithms, and worker management. This design shows remarkable flexibility, allowing for straightforward integration and experimentation with various \ac{ml} libraries, communication protocols, and \ac{fl} strategies without requiring extensive modifications to the entire system. 
+
+This modularity directly contributes to the framework's adaptability, enabling it to be tailored to diverse requirements and constraints encountered in different edge computing scenarios, and crucially, facilitates the integration of features that enhance resilience.
+
+In response to the first research question regarding how to design \ac{fl} frameworks for robustness against node failures in dynamic environments, our work focused on implementing key mechanisms within the framework's architecture. These include a dynamic worker pool managed by the Worker Manager module to handle device joins and leaves seamlessly, configurable completion thresholds for synchronous \ac{fl} approaches to tolerate stragglers without halting progress, and task rescheduling mechanisms for asynchronous \ac{fl} to ensure that tasks from failed workers are reassigned and completed.
+
+The empirical evaluation in Scenario 2 and Scenario 3 (Sections \ref{sec:scenario-2} and \ref{sec:scenario-3}), simulating significant probabilistic worker failures across various configurations, demonstrated that the framework successfully maintained training continuity and model convergence, evidenced by the high final MCC values of 0.944 for the UNSW-NB15 dataset and 0.903 for the ToN-IoT dataset with 40 workers and 1\% failure rate every second, providing strong evidence that these specific design choices effectively contribute to resilience under dynamic and adverse conditions.
+
+Addressing the second research question concerning what communication layer architectures are most suitable for fault-tolerant and resilient \ac{fl} under dynamic network conditions, the evaluation conducted in Scenario 1 (Section \ref{sec:scenario-1}) provided critical comparative insights into communication efficiency and overhead. By testing Zenoh, \ac{mqtt}, and Kafka, we observed that protocol characteristics identified in this scenario significantly influence overall system performance and, crucially, robustness in the failure scenarios investigated in other experiments.
+
+Protocols with native support for dynamic participant management and efficient handling of sporadic messages, such as Zenoh and \ac{mqtt}, generally exhibited better suitability for dynamic, failure-prone environments. Their built-in disconnection detection mechanisms proved advantageous compared to protocols like Kafka, which required additional application-level heartbeats in our implementation. 
+
+Zenoh's decentralized nature further enhances its potential resilience by avoiding a single point of failure associated with a centralized broker. This comparative analysis highlights that the suitability of communication protocols is indeed variable, with Zenoh and \ac{mqtt} demonstrating stronger alignment with the requirements for resilient \ac{fl} in dynamic edge settings based on our empirical findings.
+
+In summary, this research contributes with a modular and Resilient Federated Learning Framework, validated through experimental evaluation, that effectively addresses critical challenges in dynamic edge environments. The framework's design and implementation, coupled with the insights gained from the experimental scenarios regarding both the mechanisms for ensuring robustness and the comparative suitability of communication protocols, provide a strong foundation for developing more robust and adaptable \ac{fl} systems for real-world applications where data privacy, security, and continuous operation are paramount.
+
+
+
+\section{Limitations}
+\label{sec:limitations}
+
+While the proposed framework demonstrates promising capabilities, it is important to acknowledge certain limitations inherent in the current study and experimental setup. The evaluation was primarily conducted in a controlled, simulated environment using \acp{vm}, although this setup allowed for systematic testing under configurable conditions, it does not fully replicate the complexity and variability of real-world deployments.
+
+Specifically, the worker nodes were implemented as \acp{vm} with relatively similar hardware specifications (CPU, memory). Real-world edge devices exhibit significant heterogeneity in computational capabilities, which can significantly impact \ac{fl} performance and convergence. 
+
+Furthermore, the evaluation primarily focused on approximating \ac{iid} data distribution across workers. Real-world \ac{fl} scenarios frequently involve highly divergent, \ac{non-iid} data distributions, which pose additional challenges for model convergence and fairness that were not exhaustively explored in this evaluation. 
+
+The simulated worker failures predominantly involved graceful exits followed by potential re-joins, which may not fully capture the unpredictable nature and impact of abrupt crashes, sudden power losses, or prolonged network disconnections often encountered in practice. 
+
+Finally, while the framework is designed for scalability, the experimental validation involved a relatively small number of worker \acp{vm} (10 in the uniform set, 40 in the heterogeneous set), which provides valuable insights but does not definitively validate its performance and scalability to massive \ac{fl} deployments involving potentially hundreds of devices.
+
+
+
+\section{Future Work}
+\label{sec:future-work}
+
+
+Building upon the foundation established by this research, several promising avenues for future work can be pursued to enhance the framework and broaden its evaluation. A primary direction is to expand the experimental validation to more closely approximate challenging real-world scenarios. 
+
+Crucially, future work should involve rigorous testing under \ac{non-iid} data distributions to assess the framework's performance and explore strategies for mitigating the associated convergence and fairness challenges. The framework's modular design, particularly the \ac{fl} Backend, offers a key advantage here by enabling integration of advanced aggregation strategies and intelligent client selection mechanisms that prioritize data diversity or balance contributions from heterogeneous data distributions \cite{zhao2018federated}. 
+
+Furthermore, the Dataset Manager module could incorporate local data augmentation, re-sampling techniques, or privacy-preserving methods to expose local data statistics that the \ac{fl} Backend could use for more informed aggregation and an improved scheduling policy. Evaluating the framework with other types of datasets beyond \ac{ids}/\ac{iot}, such as those from healthcare or finance, would also demonstrate its versatility.
+
+Investigating the trade-offs associated with integrating various message compression and model quantization techniques within the Message Layer module is also crucial. Additionally, assessing the performance overhead of the Message Layer's optional encryption capabilities for practical deployments is important, noting that many modern edge devices are increasingly equipped with hardware-accelerated cryptographic modules or dedicated processor instructions that can significantly mitigate this burden, making the performance impact for basic encryption minimal or negligible in many practical scenarios \cite{dhanda2020lightweight, Silva2023}. 
+
+Expanding the resilience evaluation to include worker failures without graceful exits, such as abrupt crashes or prolonged network disruptions, is also necessary to test the robustness of the framework's recovery mechanisms under more realistic conditions.
+
+From an algorithmic perspective, future work could involve implementing and evaluating more advanced \ac{fl} algorithms that are specifically designed for robustness and efficiency in dynamic and heterogeneous environments. Additionally, exploring and implementing other worker scheduling policies beyond the default Round Robin, particularly those considering worker hardware capabilities (e.g., CPU, memory, or GPU availability), network conditions (e.g., bandwidth and latency), could potentially improve overall training efficiency and fairness.
+
+Finally, a critical direction is the comprehensive evaluation of the framework's scalability to a much larger quantity of edge devices, ranging from hundreds to thousands. This expansion highlights potential bottlenecks, predominantly the central parameter server and the communication broker's capacity. To address this, integrating advanced distributed aggregation strategies such as hierarchical aggregation \cite{liu2022distributed}, where multiple intermediate aggregators handle subsets of devices before a global server consolidates their updates, would be beneficial. Integrating the framework with real-world edge computing platforms beyond simulated \acp{vm} would provide a more definitive validation of its practical applicability and performance.
